@@ -22,9 +22,10 @@ int askMonth();
 int askDay();
 long int elapsed(int day, int month, int year, int day1, int month1, int year1);
 long int elapsedYear(int day, int month, int year, int day1, int month1, int year1);
+long int elapsedThisYear(int day, int month, int year, int day1, int month1, int year1);
 
 int main() {
-	int diference, result, resultYear;;
+	int diference, result, resultYear, resultThisYear;
 	const int day1 = 01, month1 = 01, year1 = 1900;
 	int day = 0, month = 0, year = 0;
 
@@ -93,6 +94,14 @@ long int elapsedYear(int day, int month, int year, int day1, int month1, int yea
 	cout << resultYear << "\n";
 
 	return resultYear;
+
+}
+
+long int elapsedThisYear(int day, int month, int year, int day1, int month1, int year1){
+	int resultThisYear = ((year -year1)*365);
+	cout << resultThisYear << "\n";
+
+	return resultThisYear;
 
 }
 
