@@ -1,3 +1,3 @@
 # FP
 
-Práctica uno FP.
+Práctica 1 FP.
