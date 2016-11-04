@@ -13,7 +13,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <iostream> 
+#include <iostream>
 
 using namespace std;
 
@@ -21,11 +21,12 @@ int askYear();
 int askMonth();
 int askDay();
 long int elapsed(int day, int month, int year, int day1, int month1, int year1);
-long int elapsedYear(int day, int month, int year, int day1, int month1, int year1);
-long int elapsedThisYear(int day, int month, int year, int day1, int month1, int year1);
+long int elapsedYear(int year, int year1);
+int elapsedThisYear(int day, int month, int day1, int month1);
+int countLeaps(int year1, int year);
 
 int main() {
-	int diference, result, resultYear, resultThisYear;
+	int diference, result, resultYear, resultThisYear, leaps;
 	const int day1 = 01, month1 = 01, year1 = 1900;
 	int day = 0, month = 0, year = 0;
 
@@ -33,8 +34,10 @@ int main() {
 	month = askMonth();
 	day = askDay();
 	result = elapsed(day, month, year, day1, month1, year1);
-	resultYear = elapsedYear(day, month, year, day1, month1, year1);
-	
+	resultYear = elapsedYear(year, year1);
+	resultThisYear = elapsedThisYear(day, month, day1, month1);
+	leaps = countLeaps(year1, year);
+    cout << leaps;
 
 
 	while (day > 31 || day < 1) {
@@ -89,7 +92,7 @@ long int elapsed(int day, int month, int year, int day1, int month1, int year1){
 	return result;
 
 }
-long int elapsedYear(int day, int month, int year, int day1, int month1, int year1){
+long int elapsedYear(int year, int year1){
 	int resultYear = ((year -year1)*365);
 	cout << resultYear << "\n";
 
@@ -97,12 +100,24 @@ long int elapsedYear(int day, int month, int year, int day1, int month1, int yea
 
 }
 
-long int elapsedThisYear(int day, int month, int year, int day1, int month1, int year1){
-	int resultThisYear = ((year -year1)*365);
+int elapsedThisYear(int day, int month, int day1, int month1){
+	int resultThisYear = ((month - month1)*30  + (day -day1));
 	cout << resultThisYear << "\n";
 
 	return resultThisYear;
 
 }
 
+int countLeaps(int year1, int year) {
+    int leaps = 0;
+    for(int i = year1; i<= year; i++){
+        if(i % 4 == 0 && (i % 100 != 0 || i % 400 == 0)){
+         leaps++;
+        }
+    }
 
+	return leaps;
+}
+
+int daysinMonth() {
+}
