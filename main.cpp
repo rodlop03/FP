@@ -12,6 +12,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ // AUTORÍA: DANIEL FIDALGO PANERA y RODRIGO LÓPEZ
 
 #include <iostream>
 
@@ -24,9 +25,10 @@ long int elapsed(int day, int month, int year, int day1, int month1, int year1);
 long int elapsedYear(int year, int year1);
 int elapsedThisYear(int day, int month, int day1, int month1);
 int countLeaps(int year1, int year);
+int daysInMonth(int month, int year);
 
 int main() {
-	int diference, result, resultYear, resultThisYear, leaps;
+	int diference, result, resultYear, resultThisYear, leaps,daysMonth;
 	const int day1 = 01, month1 = 01, year1 = 1900;
 	int day = 0, month = 0, year = 0;
 
@@ -37,7 +39,7 @@ int main() {
 	resultYear = elapsedYear(year, year1);
 	resultThisYear = elapsedThisYear(day, month, day1, month1);
 	leaps = countLeaps(year1, year);
-    cout << leaps;
+    daysMonth = daysInMonth(month, year);
 
 
 	while (day > 31 || day < 1) {
@@ -87,14 +89,14 @@ int askDay() {
 
 long int elapsed(int day, int month, int year, int day1, int month1, int year1){
 	int result = ((year -year1)*365 + (month - month1)*30 + (day -day1));
-	cout << result << "\n";
+	cout <<"dias transcurridos" <<result << "\n";
 
 	return result;
 
 }
 long int elapsedYear(int year, int year1){
 	int resultYear = ((year -year1)*365);
-	cout << resultYear << "\n";
+	cout << "dias hasta año"<< resultYear << "\n";
 
 	return resultYear;
 
@@ -115,9 +117,24 @@ int countLeaps(int year1, int year) {
          leaps++;
         }
     }
+    cout << "num de bisiestos"<< leaps;
 
 	return leaps;
 }
 
-int daysinMonth() {
+int daysInMonth(int month, int year) {
+    int daysMonth;
+    if (month == 1 ||month == 3 || month == 5 || month == 7 || month == 8 || month == 10 ||month == 12){
+     daysMonth = 31;
+    } else if (month == 4 || month == 6 || month == 9 || month == 11){
+     daysMonth = 30;
+    } else {
+        if(2 == 2) { //TODO: si bool si 29 y si bool no 28; dejo estructura hecha.
+        daysMonth = 29;
+        } else {
+        daysMonth = 28;
+        }
+    }
+    cout << "dias del mes"<< daysMonth;
+    return daysMonth;
 }
