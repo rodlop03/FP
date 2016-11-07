@@ -30,18 +30,40 @@ int daysInMonth(int month, int year, bool leap);
 bool isLeap(int year);
 int checkWeekDay(long int result);
 string dayName(int weekDay);
+int printMenu();
 
 int main() {
-  int diference, resultYear, resultThisYear, leaps, daysMonth, weekDay;
+  int menu, diference, resultYear, resultThisYear, leaps, daysMonth, weekDay;
   long int result;
   const int day1 = 01, month1 = 01, year1 = 1900;
   int day = 0, month = 0, year = 0;
   bool leap = false;
   string name;
 
-  year = askYear();
-  month = askMonth();
-  day = askDay();
+  menu = printMenu();
+  switch (menu) {
+    case 1:
+      year = askYear();
+      month = askMonth();
+      day = askDay();
+      break;
+    case 2:
+      year = askYear();
+      break;
+    case 3:
+      //code;
+      break;
+    case 4:
+      //code;
+      break;
+    case 0:
+      //code;
+      break;
+    default:
+    //code;
+    break;
+  }
+
   result = elapsed(day, month, year, day1, month1, year1);
   resultYear = elapsedYear(year, year1);
   resultThisYear = elapsedThisYear(day, month, day1, month1);
@@ -188,4 +210,17 @@ string dayName(int weekDay) {
   }
   cout << "El día de la semana es: " << name << "\n";
   return name;
+}
+
+int printMenu() {
+  int menu = 5;
+  while (menu < 0 || menu > 4) {
+    cout << "1 – Calcular el día de la semana para una fecha dada\n";
+    cout << "2 – Obtener la fecha correspondiente al primer domingo de un año\n";
+    cout << "3 – Obtener los domingos de un año\n";
+    cout << "4 – Obtener los posibles puentes de un año\n";
+    cout << "0 - Salir;\n";
+    cin >> menu;
+  }
+  return menu;
 }
